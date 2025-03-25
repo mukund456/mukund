@@ -1,0 +1,24 @@
+name: Run Mukund Script
+
+on:
+  workflow_dispatch:   # Allows you to manually trigger the workflow
+  schedule:
+    - cron: '0 12 * * *'  # Runs daily at midnight UTC; adjust the cron schedule if needed.
+
+jobs:
+  commit-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: |
+          git config --global user.email "mukund.20233191.genai2024@gmail.com"
+          git config --global user.name "Mukund"
+
+      - name: Make mukund.sh Executable and Run It
+        run: |
+          chmod +x mukund.sh
+          ./mukund.sh
